@@ -1,0 +1,88 @@
+[package]
+name = "xonv"
+description = "Ultimate data format conversion tool."
+version = "0.1.0"
+edition = "2021"
+authors = ["K. <kayo@illumium.org>"]
+license = "MIT"
+repository = "https://github.com/katyo/xonv"
+
+[dependencies]
+argp = "0.3"
+ron = "0.8"
+
+[dependencies.serde]
+version = "1"
+
+[dependencies.json]
+package = "serde_json"
+version = "1"
+optional = true
+
+[dependencies.json5]
+version = "0.4"
+optional = true
+
+[dependencies.yaml]
+package = "serde_yaml_ng"
+version = "0.10"
+optional = true
+
+[dependencies.toml]
+version = "0.8"
+optional = true
+
+[dependencies.sexp]
+package = "serde-lexpr"
+version = "0.1"
+optional = true
+
+[dependencies.url]
+package = "serde_qs"
+version = "0.13"
+optional = true
+
+[dependencies.msgpack]
+package = "rmp-serde"
+version = "1"
+optional = true
+
+[dependencies.cbor]
+package = "ciborium"
+version = "0.2"
+optional = true
+
+[dependencies.bson]
+version = "2"
+optional = true
+
+[dependencies.bencode]
+package = "bt_bencode"
+version = "0.8"
+optional = true
+
+[dependencies.pickle]
+package = "serde-pickle"
+version = "1"
+optional = true
+
+[dependencies.dbus]
+package = "zvariant"
+version = "4"
+optional = true
+
+[features]
+default = [
+  "json",
+  "json5",
+  "yaml",
+  "toml",
+  "sexp",
+  "url",
+  "msgpack",
+  "cbor",
+  "bson",
+  "bencode",
+  "pickle",
+  #"dbus"
+]
