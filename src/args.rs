@@ -112,10 +112,16 @@ impl Args {
                         format!("Cannot determine input format from file extension: {err}.")
                     })?);
                 } else {
-                    return Err("Cannot determine input format because file extension is missing.".to_string());
+                    return Err(
+                        "Cannot determine input format because file extension is missing."
+                            .to_string(),
+                    );
                 }
             } else {
-                return Err("Input format has not specified and cannot be determined from file extension.".to_string());
+                return Err(
+                    "Input format has not specified and cannot be determined from file extension."
+                        .to_string(),
+                );
             }
         }
 
@@ -127,7 +133,8 @@ impl Args {
                     })?);
                 } else {
                     return Err(
-                        "Cannot determine output format because file extension is missing.".to_string()
+                        "Cannot determine output format because file extension is missing."
+                            .to_string(),
                     );
                 }
             } else {

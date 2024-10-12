@@ -19,11 +19,9 @@ impl Format {
             Self::Yaml => yaml::from_reader(input)
                 .map_err(|err| format!("Error while reading YAML: {err}."))?,
             #[cfg(feature = "toml")]
-            Self::Toml => from_reader(
-                input,
-                toml::from_str,
-                |err| format!("Error while reading TOML: {err}."),
-            )?,
+            Self::Toml => from_reader(input, toml::from_str, |err| {
+                format!("Error while reading TOML: {err}.")
+            })?,
             #[cfg(feature = "sexp")]
             Self::Sexp => sexp::from_reader(input)
                 .map_err(|err| format!("Error while reading SEXP: {err}."))?,
@@ -95,12 +93,9 @@ impl Format {
             }
             .map_err(|err| format!("Error while writing JSON: {err}."))?,
             #[cfg(feature = "json5")]
-            Self::Json5 => into_writer(
-                output,
-                value,
-                json5::to_string,
-                |err| format!("Error while writing JSON5: {err}."),
-            )?,
+            Self::Json5 => into_writer(output, value, json5::to_string, |err| {
+                format!("Error while writing JSON5: {err}.")
+            })?,
             #[cfg(feature = "yaml")]
             Self::Yaml => yaml::to_writer(output, value)
                 .map_err(|err| format!("Error while writing YAML: {err}."))?,
@@ -184,7 +179,7 @@ fn from_reader<T, E>(
     from_str(&buf).map_err(from_err)
 }
 
-#[cfg(feature = "json5")]
+#[cfg(any(feature = "json5", feature = "toml"))]
 fn into_writer<T, E>(
     writer: &mut impl std::io::Write,
     value: &T,
